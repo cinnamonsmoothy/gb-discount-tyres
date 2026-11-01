@@ -325,17 +325,21 @@ matchMedia('(min-width: 761px)').addEventListener('change', event => {
   if (event.matches && !mobileMenu.hidden) setMenuOpen(false);
 });
 const lines = [...headline.querySelectorAll('.h1-line')];
+let headlineFrame;
 
 function fitHeadline() {
-  const targetWidth = Math.min(headline.clientWidth, Math.max(280, (window.innerHeight - 180) * 1.25));
-  for (const line of lines) {
-    line.style.fontSize = '100px';
-    const measuredWidth = line.getBoundingClientRect().width;
-    if (measuredWidth) {
-      line.style.fontSize = `${100 * targetWidth / measuredWidth}px`;
-      line.style.fontSize = `${parseFloat(line.style.fontSize) * targetWidth / line.getBoundingClientRect().width}px`;
+  const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+  const targetWidth = Math.min(headline.clientWidth, Math.max(17.5 * rem, (window.innerHeight - 11.25 * rem) * 1.25));
+  cancelAnimationFrame(headlineFrame);
+  for (const line of lines) line.style.fontSize = '6.25rem';
+  headlineFrame = requestAnimationFrame(() => {
+    for (const line of lines) {
+      const measuredWidth = line.getBoundingClientRect().width;
+      if (measuredWidth) {
+        line.style.fontSize = `${6.25 * targetWidth / measuredWidth}rem`;
+      }
     }
-  }
+  });
 }
 
 fitHeadline();
@@ -377,8 +381,8 @@ if (churchScene && matchMedia('(min-width: 761px) and (hover: hover) and (pointe
   const paintLayers = () => {
     for (const layer of layers) {
       const depth = Number(layer.dataset.depth);
-      layer.style.setProperty('--move-x', `${(pointerX * depth * .4).toFixed(2)}px`);
-      layer.style.setProperty('--move-y', `${(pointerY * depth * .4).toFixed(2)}px`);
+      layer.style.setProperty('--move-x', `${(pointerX * depth * .025).toFixed(3)}rem`);
+      layer.style.setProperty('--move-y', `${(pointerY * depth * .025).toFixed(3)}rem`);
     }
     frame = 0;
   };
