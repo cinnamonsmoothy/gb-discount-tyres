@@ -51,8 +51,11 @@ section[id] { scroll-margin-top: 100px; }
 }
 .hero-media, .hero-shade { inset: 0; position: absolute; }
 .hero-media { left: 25%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 25%); mask-image: linear-gradient(90deg, transparent, #000 25%); z-index: 0; }
-.hero-poster, .hero-video, .hero-gif { height: 100%; inset: 0; object-fit: cover; object-position: left center; position: absolute; width: 100%; }
-.hero-video, .hero-gif { z-index: 1; }
+.hero-poster, .hero-video, .hero-gif, .hero-gif-nojs { height: 100%; inset: 0; object-fit: cover; object-position: left center; position: absolute; width: 100%; }
+.hero-video, .hero-gif, .hero-gif-nojs { z-index: 1; }
+.hero-gif { display: none; }
+.hero-media.use-gif .hero-gif { display: block; }
+.hero-media.use-gif .hero-video { display: none; }
 .hero-shade {
   background: linear-gradient(90deg, rgba(0,0,0,.93) 0%, rgba(0,0,0,.74) 34%, rgba(0,0,0,.1) 72%, rgba(0,0,0,.16) 100%), linear-gradient(0deg, #000 0%, transparent 21%, transparent 79%, rgba(0,0,0,.35) 100%);
   pointer-events: none;
@@ -333,7 +336,7 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
   .mobile-menu-call { border-bottom: 1px solid #d71920; color: #fff; font-size: 14px; font-weight: 800; letter-spacing: .08em; margin-top: 35px; padding-bottom: 12px; width: max-content; }
   .mobile-menu-location { color: #8d8f91; font-size: 11px; letter-spacing: .08em; margin-top: 21px; }
   .hero-media { left: 0; transform: scale(1.25); transform-origin: 62% center; }
-  .hero-poster, .hero-video, .hero-gif { object-position: 62% center; }
+  .hero-poster, .hero-video, .hero-gif, .hero-gif-nojs { object-position: 62% center; }
   .hero-shade { background: linear-gradient(180deg, rgba(0,0,0,.38), rgba(0,0,0,.4) 42%, rgba(0,0,0,.7)); }
   .hero-content { left: 24px; right: 24px; text-align: center; top: 50%; transform: translateY(-43%); width: auto; }
   .h1-line { margin-inline: auto; }
@@ -430,7 +433,7 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
   html.reveal-ready .scroll-reveal > .reveal-content { opacity: 1; transform: none; transition: none; }
   .church-layer { transition: none; }
   .church-layer img { animation: none; }
-  .hero-video, .hero-gif { display: none; }
+  .hero-video, .hero-gif, .hero-gif-nojs { display: none !important; }
   .neon-word { animation: none; filter: none; }
   .neon-flicker, .neon-soft-flicker { animation: none; }
   .button-primary::before { transition: none; }

@@ -51,7 +51,8 @@
             <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="./assets/video/hero-poster.jpg">
               <source src="./assets/video/hero-video.mp4" type="video/mp4" />
             </video>
-            <noscript><img class="hero-gif" src="./assets/video/hero-fallback.gif" alt="" /></noscript>
+            <img class="hero-gif" src="./assets/video/hero-fallback.gif" alt="" />
+            <noscript><img class="hero-gif-nojs" src="./assets/video/hero-fallback.gif" alt="" /></noscript>
           </div>
           <div class="hero-shade" aria-hidden="true"></div>
           <div class="hero-content">
@@ -252,6 +253,33 @@
     </div>
     <script>
 const lookupApi = 'https://gb-discount-tyres-quxl24etta-nw.a.run.app';
+const heroMedia = document.querySelector('.hero-media');
+const heroVideo = document.querySelector('.hero-video');
+let videoStartTimer;
+let lastVideoTime = 0;
+let stalledChecks = 0;
+function showHeroGif() {
+  heroMedia.classList.add('use-gif');
+  heroVideo.pause();
+  clearTimeout(videoStartTimer);
+}
+heroVideo.addEventListener('error', showHeroGif);
+heroVideo.querySelector('source').addEventListener('error', showHeroGif);
+heroVideo.addEventListener('playing', () => clearTimeout(videoStartTimer));
+heroVideo.addEventListener('stalled', () => {
+  if (heroVideo.currentTime === 0) showHeroGif();
+});
+videoStartTimer = setTimeout(() => {
+  if (heroVideo.currentTime === 0 || heroVideo.paused) showHeroGif();
+}, 4000);
+setInterval(() => {
+  if (heroMedia.classList.contains('use-gif') || document.hidden) return;
+  stalledChecks = heroVideo.paused || Math.abs(heroVideo.currentTime - lastVideoTime) < .1 ? stalledChecks + 1 : 0;
+  lastVideoTime = heroVideo.currentTime;
+  if (stalledChecks >= 2) showHeroGif();
+}, 3000);
+const heroPlay = heroVideo.play();
+if (heroPlay) heroPlay.catch(showHeroGif);
 const siteHeader = document.querySelector('.site-header');
 function syncHeaderBackground() {
   siteHeader.classList.toggle('is-scrolled', window.scrollY > 0);
