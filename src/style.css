@@ -3,7 +3,7 @@
   color: #f5f4f1;
   background: #0b0c0d;
   --content-width: 1920px;
-  --page-gutter: max(4px, calc((100vw - var(--content-width)) / 2));
+  --page-gutter: max(24px, calc((100vw - var(--content-width)) / 2));
   font-synthesis: none;
   scroll-behavior: smooth;
 }
@@ -280,6 +280,22 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
 .footer-bottom a { color: #f4f2ee; }
 .footer-bottom a:hover { color: #e43a33; }
 .footer-bottom .sitehoney-credit { letter-spacing: .02em; text-transform: none; }
+
+/* Keep desktop proportions comfortable on standard laptop screens. */
+@media (min-width: 1101px) and (max-width: 1600px) {
+  :root { --page-gutter: clamp(50px, 6vw, 96px); }
+  .hero-content { width: min(48vw, 700px); }
+  .hero-description { font-size: 16px; }
+  .reg-inner, .local-story-inner { max-width: 1200px; }
+  .location-inner, .faq-inner, .footer-inner { max-width: 1220px; }
+  .services-inner { max-width: 1360px; }
+  .reg-intro h2 { font-size: clamp(68px, 6.4vw, 102px); }
+  .services-heading h2 { font-size: clamp(54px, 5.4vw, 76px); }
+  .local-story h2 { font-size: clamp(76px, 7.1vw, 114px); }
+  .location h2 { font-size: clamp(76px, 7.4vw, 118px); }
+  .faq h2 { font-size: clamp(68px, 5.8vw, 94px); }
+  .service-banner h3 { font-size: clamp(17px, 1.35vw, 22px); }
+}
 
 @media (max-width: 1100px) {
   .services-grid { grid-template-columns: repeat(6, 220px); overflow-x: auto; padding-bottom: 12px; }
