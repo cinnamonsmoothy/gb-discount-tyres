@@ -281,20 +281,27 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
 .footer-bottom a:hover { color: #e43a33; }
 .footer-bottom .sitehoney-credit { letter-spacing: .02em; text-transform: none; }
 
-/* Keep desktop proportions comfortable on standard laptop screens. */
+/* Match the wide-screen composition on standard laptop viewports. */
 @media (min-width: 1101px) and (max-width: 1600px) {
-  :root { --page-gutter: clamp(50px, 6vw, 96px); }
-  .hero-content { width: min(48vw, 700px); }
-  .hero-description { font-size: 16px; }
-  .reg-inner, .local-story-inner { max-width: 1200px; }
-  .location-inner, .faq-inner, .footer-inner { max-width: 1220px; }
-  .services-inner { max-width: 1360px; }
-  .reg-intro h2 { font-size: clamp(68px, 6.4vw, 102px); }
-  .services-heading h2 { font-size: clamp(54px, 5.4vw, 76px); }
-  .local-story h2 { font-size: clamp(76px, 7.1vw, 114px); }
-  .location h2 { font-size: clamp(76px, 7.4vw, 118px); }
-  .faq h2 { font-size: clamp(68px, 5.8vw, 94px); }
-  .service-banner h3 { font-size: clamp(17px, 1.35vw, 22px); }
+  :root { --page-gutter: clamp(85px, 11vw, 176px); }
+  .site-header { padding-top: 12px; padding-bottom: 12px; }
+  .brand { height: 48px; }
+  .brand-logo { width: clamp(180px, 16vw, 230px); }
+  .site-nav a { font-size: 10px; }
+  .hero-content { width: min(36vw, 560px); transform: translateY(calc(-50% + 12px)); }
+  .hero-description { font-size: 14px; margin-top: 24px; }
+  .hero-actions { gap: 24px; margin-top: 24px; }
+  .hero-actions .button-primary { min-height: 48px; min-width: 200px; }
+  .reg-inner, .local-story-inner, .location-inner, .faq-inner, .footer-inner { max-width: 76vw; }
+  .services-inner { max-width: 88vw; }
+  .reg-intro h2 { font-size: clamp(58px, 5.4vw, 86px); }
+  .services-heading h2 { font-size: clamp(48px, 4.6vw, 68px); }
+  .local-story h2 { font-size: clamp(65px, 6vw, 96px); }
+  .location h2 { font-size: clamp(65px, 6.2vw, 100px); }
+  .faq h2 { font-size: clamp(58px, 5vw, 80px); }
+  .service-banner h3 { font-size: clamp(16px, 1.2vw, 19px); }
+  .local-story-lead { font-size: clamp(18px, 1.7vw, 24px); }
+  .location-map-wrap { height: clamp(380px, 36vw, 530px); }
 }
 
 @media (max-width: 1100px) {
