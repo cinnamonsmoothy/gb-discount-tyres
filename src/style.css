@@ -291,7 +291,7 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
   .site-header { gap: 12px; padding: 12px 20px; }
   .brand { flex: 1; height: 50px; min-width: 0; }
   .brand-logo { width: 180px; }
-  .site-header:not(.is-scrolled) .brand-logo { filter: url(#logo-transparent-black); }
+  .site-header:not(.is-scrolled) .brand-logo { filter: url(#logo-transparent-black) drop-shadow(0 3px 5px rgba(0, 0, 0, .85)) drop-shadow(0 0 10px rgba(0, 0, 0, .5)); }
   .site-nav { gap: 0; margin-left: auto; }
   .site-nav a:not(.nav-contact) { display: none; }
   .site-nav .nav-contact { background: #d71920; border: 0; color: #fff; font-size: 12px; padding: 10px 14px; }
