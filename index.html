@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./src/style.css" />
+    <noscript><style>.hero-video { display: none; }</style></noscript>
   </head>
   <body>
     <svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden">
@@ -50,6 +51,7 @@
             <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="./assets/video/hero-poster.jpg">
               <source src="./assets/video/hero-video.mp4" type="video/mp4" />
             </video>
+            <noscript><img class="hero-gif" src="./assets/video/hero-fallback.gif" alt="" /></noscript>
           </div>
           <div class="hero-shade" aria-hidden="true"></div>
           <div class="hero-content">
