@@ -149,17 +149,17 @@ h1 { letter-spacing: -.055em; line-height: .82; width: 100%; }
 .reg-intro h2 em { color: #d71920; font-style: normal; }
 .reg-intro-copy { color: #55585b; font-size: clamp(16px, 1.35vw, 20px); line-height: 1.65; margin: 32px 0 0; max-width: 470px; }
 .reg-panel { background: #fff; border: 1px solid #e2e0db; box-shadow: 0 24px 70px rgba(19, 21, 23, .07); padding: clamp(26px, 3.6vw, 54px); }
-.reg-panel-top { border-bottom: 1px solid #e6e4df; color: #777a7d; display: flex; font-size: 10px; font-weight: 800; justify-content: space-between; letter-spacing: .18em; margin-bottom: 36px; padding-bottom: 20px; }
-.reg-panel-top span:first-child { color: #d71920; }
 .reg-panel label { display: block; font-size: 11px; font-weight: 800; letter-spacing: .13em; margin-bottom: 14px; }
-#plate-number { width: 100%; min-height: 48px; margin-bottom: 18px; padding: 10px 14px; border: 1px solid #c8c7c2; border-radius: 0; background: #fff; color: #1d1e20; font: 700 14px "DM Sans", Arial, sans-serif; }
-#plate-number { font-size: 20px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.number-plate { align-items: stretch; background: #ffcf21; border: 2px solid #151515; border-radius: 6px; box-shadow: 0 3px 0 #b28d0d, 0 8px 18px rgba(0,0,0,.13); display: flex; height: 68px; margin-bottom: 22px; overflow: hidden; }
+.number-plate-band { align-items: end; background: #124aa2; color: #fff; display: flex; flex: 0 0 42px; font: 800 12px Arial, sans-serif; justify-content: center; padding-bottom: 9px; }
+#plate-number { background: transparent; border: 0; border-radius: 0; color: #111; flex: 1; font: 800 clamp(25px, 2.6vw, 36px) Arial, sans-serif; letter-spacing: .12em; min-width: 0; padding: 8px 12px; text-align: center; text-transform: uppercase; }
+#plate-number::placeholder { color: #444; opacity: .55; }
 #plate-form .reg-submit { margin-top: 0; }
-#plate-number:focus-visible { outline: 2px solid #d71920; outline-offset: 2px; }
-.plate-help, .reg-note, .results-note { color: #777a7d; font-size: 12px; line-height: 1.55; }
+.number-plate:focus-within { outline: 3px solid #d71920; outline-offset: 4px; }
+#plate-number:focus-visible { outline: none; }
+.plate-help, .results-note { color: #777a7d; font-size: 12px; line-height: 1.55; }
 .plate-error { color: #bb151b; font-size: 12px; font-weight: 700; margin: 12px 0 0; }
 .reg-submit { border: 0; cursor: pointer; margin-top: 25px; width: 100%; }
-.reg-note { border-top: 1px solid #e6e4df; margin: 34px 0 0; padding-top: 18px; }
 .finder-results { border-top: 1px solid #d4d1ca; margin-top: clamp(70px, 8vw, 120px); padding-top: 38px; }
 .results-head { align-items: end; display: flex; gap: 20px; justify-content: space-between; }
 .results-kicker { margin-bottom: 12px; }

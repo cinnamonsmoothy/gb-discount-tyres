@@ -70,18 +70,19 @@
           <div class="reg-inner">
             <div class="reg-top">
               <div class="reg-intro">
-                <h2 id="reg-title">YOUR CAR.<br /><em>YOUR TYRES.</em></h2>
-                <p class="reg-intro-copy">Enter your registration to identify your car and check for available tyre sizes.</p>
+                <h2 id="reg-title">CHECK YOUR<br /><em>TYRE SIZES.</em></h2>
+                <p class="reg-intro-copy">Enter your registration to find your car's manufacturer tyre sizes.</p>
               </div>
               <div class="reg-panel">
-                <div class="reg-panel-top"><span>START HERE</span><span>GB / FELTHAM</span></div>
                 <form id="plate-form">
                   <label for="plate-number">YOUR REGISTRATION</label>
-                  <input id="plate-number" name="registration" type="text" maxlength="10" placeholder="AB12 CDE" autocomplete="off" autocapitalize="characters" spellcheck="false" required />
+                  <div class="number-plate">
+                    <span class="number-plate-band" aria-hidden="true">UK</span>
+                    <input id="plate-number" name="registration" type="text" maxlength="10" placeholder="AB12 CDE" autocomplete="off" autocapitalize="characters" spellcheck="false" required />
+                  </div>
                   <button class="button button-primary reg-submit" type="submit">FIND MY CAR</button>
                 </form>
                 <p class="plate-error" id="lookup-error" role="alert" hidden></p>
-                <p class="reg-note">Manufacturer sizes can vary by trim and wheels. Confirm the size on your tyre sidewall before ordering. Call for current prices and stock.</p>
               </div>
             </div>
 
