@@ -1,0 +1,18 @@
+{
+  "name": "gb-discount-tyres",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GB Discount Tyres Feltham landing page",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "vite": "^8.3.5"
+  }
+}

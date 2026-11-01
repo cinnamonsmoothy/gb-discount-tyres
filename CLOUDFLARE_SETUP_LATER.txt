@@ -1,0 +1,34 @@
+GB Discount Tyres: GitHub Pages now, Cloudflare later
+====================================================
+
+CURRENT SETUP
+- Website: static Vite build, intended for GitHub Pages.
+- API: Cloud Run at https://gb-discount-tyres-quxl24etta-nw.a.run.app/api/vehicle
+- The website currently calls that Cloud Run URL directly.
+- The API is PUBLIC: no authentication, rate limit, or Cloudflare protection is active yet.
+- Cloud Run stores the MyCarPlate and Bright Data credentials in Secret Manager.
+- Returned tyre sizes are model-year possibilities, not a confirmed fit for the specific car.
+
+HOST THE WEBSITE ON GITHUB PAGES
+1. Run `npm install` if dependencies are not installed, then `npm run build`.
+2. Publish the CONTENTS of `dist/`, including `index.html` and `assets/`, to GitHub Pages. Do not publish the raw project root as the finished website.
+3. GitHub Pages can serve from a branch root or `/docs`; it cannot select `dist/` directly as a branch folder. Use a GitHub Actions workflow to deploy `dist/`, or copy the build into a dedicated publish branch/root before enabling Pages.
+4. Test the published site on its actual GitHub Pages URL: images, hero video, mobile layout, and a registration lookup.
+5. Keep `backend/.env.local`, `backend/.gcloud/`, and API credentials out of the published files and repository.
+
+WHEN THE CLIENT BUYS A DOMAIN
+Example: buy a domain from Spaceship, then add it to Cloudflare's Free plan and change the domain's nameservers at Spaceship to the ones Cloudflare provides. Connect the domain to GitHub Pages and configure it as the GitHub Pages custom domain. Keep HTTPS enabled. Follow the current GitHub Pages and Cloudflare domain setup screens; DNS records depend on whether you use the root domain or `www`.
+
+PLANNED CLOUDFLARE API PROTECTION (NOT SET UP YET)
+1. Route a same-domain URL such as `https://yourdomain.co.uk/api/vehicle` through a Cloudflare Worker to Cloud Run. Update the website to call `/api/vehicle` on its own domain.
+2. Use a Cloudflare WAF Managed Challenge on entry to the site and on the API path. A visitor who passes the challenge receives a `cf_clearance` cookie. Cloudflare checks that cookie on the later API request. There is no separate verification code to put in frontend JavaScript.
+3. Have the Worker add a private origin secret to its request to Cloud Run. Store that secret in Cloudflare Worker secrets and Google Secret Manager. Change the Cloud Run API to reject requests without the secret. This prevents callers from bypassing Cloudflare via the public `run.app` URL. Never put the origin secret in the website code.
+4. Test normal browsing, lookup after clearance, lookup without clearance, direct `run.app` access, mobile browsers, and expired clearance. A challenge page returned to a `fetch` request is HTML, so the visitor should normally obtain clearance during a page visit before making a lookup.
+5. Optionally add Cloudflare's free IP-based rate-limiting rule to the API path and a Cloud Run monthly spend cap. The free WAF rate rule has limited controls and is not a precise quota. A spend cap can pause the API and does not cap external providers.
+6. Cloudflare Free has usage limits; check the current limits and prices when setting it up. The domain registration, Cloud Run, MyCarPlate, and Bright Data may still cost money.
+
+IMPORTANT BEFORE SWITCHING
+- Do not change the website's API URL until the Worker route and Cloud Run origin check work.
+- A Cloudflare-protected domain does not protect the API while the direct Cloud Run URL remains callable without an origin check.
+- A public GitHub Pages `github.io` URL can bypass a challenge on the custom site domain. The API must still require the protected route so the old public page cannot make unrestricted lookups.
+- The current build is ready for GitHub Pages, but the site has not been published there yet.

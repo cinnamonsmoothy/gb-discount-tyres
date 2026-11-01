@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0c0d" />
+    <meta name="description" content="GB Discount Tyres in Feltham. Discover a local tyre shop built around helping you get back on the road with confidence." />
+    <title>GB Discount Tyres Feltham | Tyres for the Road Ahead</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="GB Discount Tyres, back to top">
+          <img class="brand-logo" src="./assets/brand/logo.png" alt="" width="2172" height="724" />
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="#faq">FAQs</a>
+          <a href="#services">Services</a>
+          <a class="nav-contact" href="tel:02088442156" aria-label="Call 020 8844 2156"><span class="nav-contact-long">Call 020 8844 2156</span><span class="nav-contact-short">Call</span></a>
+        </nav>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+      </header>
+      <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+        <nav aria-label="Mobile navigation">
+          <a href="#top">Home</a>
+          <a href="#tyre-finder">Find tyres</a>
+          <a href="#services">Services</a>
+          <a href="#local-story">Our story</a>
+          <a href="#find-us">Find us</a>
+          <a href="#faq">FAQs</a>
+        </nav>
+        <a class="mobile-menu-call" href="tel:02088442156">Call 020 8844 2156</a>
+        <span class="mobile-menu-location">158 Bedfont Lane · Feltham TW14 9NJ</span>
+      </div>
+
+      <main>
+        <section class="hero" id="top" aria-labelledby="hero-title">
+          <div class="hero-media" aria-hidden="true">
+            <img class="hero-poster" src="./assets/video/hero-poster.jpg" alt="" />
+            <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="./assets/video/hero-poster.jpg">
+              <source src="./assets/video/hero-video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="hero-shade" aria-hidden="true"></div>
+          <div class="hero-content">
+            <h1 id="hero-title" aria-label="Get the best tyres in Feltham"><span class="h1-line" aria-hidden="true">GET THE BEST</span><span class="h1-line neon-word" aria-hidden="true"><span class="neon-letter neon-soft-flicker">T</span><span class="neon-letter neon-soft-flicker">Y</span><span class="neon-letter neon-soft-flicker">R</span><span class="neon-letter neon-flicker">E</span><span class="neon-letter neon-soft-flicker">S</span></span><span class="h1-line" aria-hidden="true">IN FELTHAM</span></h1>
+            <p class="hero-description">Tyres in Feltham for wherever the road takes you next. Find your fit. Get moving.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="tel:02088442156">Call 020 8844 2156</a>
+              <a class="text-link" href="#services">Services</a>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="reg-finder" id="tyre-finder" aria-labelledby="reg-title">
+          <div class="reg-inner">
+            <div class="reg-top">
+              <div class="reg-intro">
+                <h2 id="reg-title">YOUR CAR.<br /><em>YOUR TYRES.</em></h2>
+                <p class="reg-intro-copy">Enter your registration to identify your car and check for available tyre sizes.</p>
+              </div>
+              <div class="reg-panel">
+                <div class="reg-panel-top"><span>START HERE</span><span>GB / FELTHAM</span></div>
+                <form id="plate-form">
+                  <label for="plate-number">YOUR REGISTRATION</label>
+                  <input id="plate-number" name="registration" type="text" maxlength="10" placeholder="AB12 CDE" autocomplete="off" autocapitalize="characters" spellcheck="false" required />
+                  <button class="button button-primary reg-submit" type="submit">FIND MY CAR</button>
+                </form>
+                <p class="plate-error" id="lookup-error" role="alert" hidden></p>
+                <p class="reg-note">Manufacturer sizes can vary by trim and wheels. Confirm the size on your tyre sidewall before ordering. Call for current prices and stock.</p>
+              </div>
+            </div>
+
+            <div class="finder-results" id="tyre-results" hidden>
+              <div class="results-head">
+                <div><p class="results-kicker"><span id="result-mode">LOOKUP FOR</span> <span id="result-vehicle"></span></p><h3 id="results-title">YOUR CAR</h3></div>
+                <span class="results-demo" id="results-badge">MANUFACTURER FITMENT</span>
+              </div>
+              <div class="vehicle-summary">
+                <div class="vehicle-main">
+                  <span class="vehicle-label">SELECTED VEHICLE</span>
+                  <strong id="vehicle-name"></strong>
+                  <span class="vehicle-caveat" id="vehicle-caveat">Factory fitment can vary. Confirm the size on your tyre sidewall before buying.</span>
+                </div>
+                <dl class="vehicle-specs">
+                  <div><dt>YEAR</dt><dd id="vehicle-year"></dd></div>
+                  <div><dt>MAKE</dt><dd id="vehicle-make"></dd></div>
+                  <div><dt id="vehicle-third-label">TRIM</dt><dd id="vehicle-trim"></dd></div>
+                </dl>
+              </div>
+              <div class="trim-choice" id="trim-choice" hidden>
+                <label for="trim-select">CHOOSE YOUR VERSION</label>
+                <select id="trim-select"><option value="">Select your vehicle version</option></select>
+                <button class="button button-primary" id="trim-submit" type="button">SHOW TYRE SIZES</button>
+              </div>
+              <div class="fitment-list" id="fitment-list"></div>
+              <p class="results-note" id="results-note">These are manufacturer fitment sizes, not a check of the tyres currently fitted. Call us for current prices and availability.</p>
+              <a class="button button-primary results-call" href="tel:02088442156">CALL 020 8844 2156</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="services" id="services" aria-labelledby="services-title">
+          <div class="services-inner">
+            <div class="services-heading">
+              <div>
+                <h2 id="services-title">KEEPING FELTHAM<br /><em>ON THE ROAD.</em></h2>
+              </div>
+              <p>From everyday tyre care to MOTs, get the work your car needs in one place.</p>
+            </div>
+            <div class="services-grid">
+              <article class="service-card">
+                <div class="service-image"><img src="./assets/services/mot.jpg" alt="Mechanic inspecting the underside of a car" loading="lazy" /></div>
+                <div class="service-banner"><h3>MOT TESTING</h3></div>
+              </article>
+              <article class="service-card">
+                <div class="service-image"><img src="./assets/services/tyre-fitting.jpg" alt="Mechanic fitting a wheel to a car" loading="lazy" /></div>
+                <div class="service-banner"><h3>TYRE FITTING</h3></div>
+              </article>
+              <article class="service-card">
+                <div class="service-image"><img src="./assets/services/puncture-repairs.jpg" alt="Mechanic working on a car wheel in a workshop" loading="lazy" /></div>
+                <div class="service-banner"><h3>PUNCTURE REPAIRS</h3></div>
+              </article>
+              <article class="service-card">
+                <div class="service-image"><img src="./assets/services/tyre-checks.jpg" alt="Mechanic checking a car tyre in a garage" loading="lazy" /></div>
+                <div class="service-banner"><h3>TYRE CHECKS</h3></div>
+              </article>
+              <article class="service-card">
+                <div class="service-image"><img src="./assets/services/diagnostics-repairs.jpg" alt="Mechanic using diagnostic equipment in a workshop" loading="lazy" /></div>
+                <div class="service-banner"><h3>DIAGNOSTICS &amp; REPAIRS</h3></div>
+              </article>
+              <article class="service-card">
+                <div class="service-image"><img src="./assets/services/servicing-maintenance.jpg" alt="Mechanic carrying out engine maintenance" loading="lazy" /></div>
+                <div class="service-banner"><h3>SERVICING &amp; MAINTENANCE</h3></div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="local-story" id="local-story" aria-labelledby="local-story-title">
+          <div class="local-story-inner">
+            <div class="local-story-copy">
+              <h2 id="local-story-title">FELTHAM<br />IS <em>HOME.</em></h2>
+              <p class="local-story-lead">Your local tyre people, right here in Feltham.</p>
+              <p class="local-story-body">We know these roads because we drive them too. For more than 15 years, GB Discount Tyres has been here in Feltham, helping local drivers keep moving with practical advice and dependable service.</p>
+            </div>
+            <div class="local-story-visual">
+              <div class="local-story-photo-wrap church-scene" role="img" aria-label="Layered view of St Catherine’s tower in Feltham">
+                <div class="church-layer church-layer-sky" data-depth="5"><img src="./assets/local/church_parallax/building(2).png" alt="" loading="lazy" /></div>
+                <div class="church-layer church-layer-building" data-depth="10"><img src="./assets/local/church_parallax/sky(1).png" alt="" loading="lazy" /></div>
+                <div class="church-layer church-layer-church" data-depth="14"><img src="./assets/local/church_parallax/church(4).png" alt="" loading="lazy" /></div>
+                <div class="church-layer church-layer-signs" data-depth="28"><img src="./assets/local/church_parallax/signs(5).png" alt="" loading="lazy" /></div>
+                <div class="church-layer church-layer-bushes" data-depth="7"><img src="./assets/local/church_parallax/bushes(6).png" alt="" loading="lazy" /></div>
+              </div>
+              <div class="local-story-year" data-depth="19" aria-label="Since 2009"><span>SINCE</span><strong>2009</strong></div>
+              <button class="motion-toggle" type="button" hidden>ENABLE TILT</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="location" id="find-us" aria-labelledby="location-title">
+          <div class="location-inner">
+            <div class="location-copy">
+              <h2 id="location-title">FIND US<br /><em>HERE.</em></h2>
+              <p class="location-intro">On Bedfont Lane, a few doors from Great Wall Fish &amp; Chips and Bedfont Food &amp; Wine.</p>
+              <address class="location-address">158 Bedfont Lane<br />Feltham <span>TW14 9NJ</span></address>
+              <div class="location-actions">
+                <a class="button button-primary" href="https://www.google.com/maps/dir/?api=1&destination=158+Bedfont+Lane%2C+Feltham+TW14+9NJ" target="_blank" rel="noopener noreferrer">GET DIRECTIONS</a>
+                <a class="location-call" href="tel:02088442156">CALL 020 8844 2156</a>
+              </div>
+            </div>
+            <div class="location-map-wrap">
+              <div class="location-map-top"><span>GB DISCOUNT TYRES</span><span>BEDFONT LANE / TW14</span></div>
+              <iframe class="location-map" title="Map showing 158 Bedfont Lane, Feltham TW14 9NJ" src="https://www.google.com/maps?q=158%20Bedfont%20Lane%2C%20Feltham%20TW14%209NJ&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+              <div class="location-map-bottom"><span>158 BEDFONT LANE</span><a href="https://www.google.com/maps/search/?api=1&query=158+Bedfont+Lane%2C+Feltham+TW14+9NJ" target="_blank" rel="noopener noreferrer">OPEN IN GOOGLE MAPS ↗</a></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="faq" id="faq" aria-labelledby="faq-title">
+          <div class="faq-inner">
+            <div class="faq-intro">
+              <h2 id="faq-title">QUESTIONS?<br />WE’RE HERE<br /><em>TO HELP.</em></h2>
+              <a class="button button-primary faq-call" href="tel:02088442156">Still have questions? Call 020 8844 2156</a>
+            </div>
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>How do I know which tyre size I need?<span aria-hidden="true">+</span></summary>
+                <p>Check the size printed on your tyre sidewall. A registration lookup identifies the vehicle but cannot confirm its fitted tyre size.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Can you repair a puncture?<span aria-hidden="true">+</span></summary>
+                <p>We offer puncture repairs. Whether a particular tyre can be repaired depends on the location and extent of the damage. Bring it in and we can inspect it.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Do you offer MOTs and servicing?<span aria-hidden="true">+</span></summary>
+                <p>Yes. MOT testing, servicing and maintenance are among the services listed here. Call the team to discuss what your vehicle needs and arrange a visit.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Are the tyre prices and stock shown live?<span aria-hidden="true">+</span></summary>
+                <p>No. The tyre options and prices on this site are examples. Call us for current stock, an exact fit and a quote.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Where is the shop?<span aria-hidden="true">+</span></summary>
+                <p>Find us at 158 Bedfont Lane, Feltham TW14 9NJ, a few doors from Great Wall Fish &amp; Chips and Bedfont Food &amp; Wine. <a href="#find-us">See the map and directions.</a></p>
+              </details>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div class="footer-top">
+            <div class="footer-brand">
+              <a href="#top" aria-label="GB Discount Tyres, back to top"><img src="./assets/brand/logo.png" alt="GB Discount Tyres" width="2172" height="724" loading="lazy" /></a>
+              <p>Tyres, repairs and dependable local service in Feltham since 2009.</p>
+            </div>
+            <div class="footer-column">
+              <h2>EXPLORE</h2>
+              <a href="#tyre-finder">Find tyre sizes</a>
+              <a href="#services">Services</a>
+              <a href="#local-story">Our story</a>
+              <a href="#faq">FAQs</a>
+            </div>
+            <div class="footer-column">
+              <h2>VISIT</h2>
+              <a href="#find-us">158 Bedfont Lane<br />Feltham TW14 9NJ</a>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=158+Bedfont+Lane%2C+Feltham+TW14+9NJ" target="_blank" rel="noopener noreferrer">Get directions ↗</a>
+            </div>
+            <div class="footer-column footer-contact">
+              <h2>GET IN TOUCH</h2>
+              <a href="tel:02088442156">020 8844 2156</a>
+              <p>Questions about tyres, stock or a repair? Give us a call.</p>
+            </div>
+          </div>
+          <div class="footer-bottom"><span>© <span id="footer-year">2026</span> GB DISCOUNT TYRES</span><span>FELTHAM / TW14</span><a class="sitehoney-credit" href="https://sitehoney.co.uk" target="_blank" rel="noopener noreferrer">Made with ❤️ by sitehoney.co.uk</a><a href="#top">BACK TO TOP ↑</a></div>
+        </div>
+      </footer>
+    </div>
+    <script>
+const lookupApi = 'https://gb-discount-tyres-quxl24etta-nw.a.run.app';
+const siteHeader = document.querySelector('.site-header');
+function syncHeaderBackground() {
+  siteHeader.classList.toggle('is-scrolled', window.scrollY > 0);
+}
+syncHeaderBackground();
+window.addEventListener('scroll', syncHeaderBackground, { passive: true });
+const headline = document.querySelector('#hero-title');
+document.querySelector('#footer-year').textContent = new Date().getFullYear();
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('#mobile-menu');
+function setMenuOpen(open) {
+  mobileMenu.hidden = !open;
+  document.body.classList.toggle('menu-open', open);
+  document.querySelector('main').inert = open;
+  document.querySelector('.site-footer').inert = open;
+  document.querySelector('.brand').inert = open;
+  document.querySelector('.site-nav').inert = open;
+  menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  if (open) mobileMenu.querySelector('a').focus();
+}
+menuToggle.addEventListener('click', () => setMenuOpen(mobileMenu.hidden));
+mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
+document.addEventListener('keydown', event => {
+  if (mobileMenu.hidden) return;
+  if (event.key === 'Escape') {
+    setMenuOpen(false);
+    menuToggle.focus();
+  } else if (event.key === 'Tab') {
+    const focusable = [menuToggle, ...mobileMenu.querySelectorAll('a')];
+    const index = focusable.indexOf(document.activeElement);
+    if (event.shiftKey && index <= 0) {
+      event.preventDefault();
+      focusable.at(-1).focus();
+    } else if (!event.shiftKey && index === focusable.length - 1) {
+      event.preventDefault();
+      menuToggle.focus();
+    }
+  }
+});
+matchMedia('(min-width: 761px)').addEventListener('change', event => {
+  if (event.matches && !mobileMenu.hidden) setMenuOpen(false);
+});
+const lines = [...headline.querySelectorAll('.h1-line')];
+
+function fitHeadline() {
+  const targetWidth = Math.min(headline.clientWidth, Math.max(280, (window.innerHeight - 180) * 1.25));
+  for (const line of lines) {
+    line.style.fontSize = '100px';
+    const measuredWidth = line.getBoundingClientRect().width;
+    if (measuredWidth) {
+      line.style.fontSize = `${100 * targetWidth / measuredWidth}px`;
+      line.style.fontSize = `${parseFloat(line.style.fontSize) * targetWidth / line.getBoundingClientRect().width}px`;
+    }
+  }
+}
+
+fitHeadline();
+window.addEventListener('resize', fitHeadline);
+if (document.fonts) document.fonts.ready.then(fitHeadline);
+
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const scrollSections = [...document.querySelectorAll('main > section:not(.hero), .site-footer')];
+  const revealObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      } else {
+        entry.target.classList.remove('is-visible');
+        entry.target.dataset.revealSide = entry.boundingClientRect.top >= window.innerHeight ? 'below' : 'above';
+      }
+    }
+  }, { threshold: .03 });
+  for (const section of scrollSections) {
+    const content = section.firstElementChild;
+    if (!content) continue;
+    section.classList.add('scroll-reveal');
+    content.classList.add('reveal-content');
+    const bounds = section.getBoundingClientRect();
+    section.dataset.revealSide = bounds.top >= window.innerHeight ? 'below' : 'above';
+    if (bounds.top < window.innerHeight && bounds.bottom > 0) section.classList.add('is-visible');
+    revealObserver.observe(section);
+  }
+  document.documentElement.classList.add('reveal-ready');
+}
+
+const churchScene = document.querySelector('.church-scene');
+if (churchScene && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+  const layers = [...churchScene.parentElement.querySelectorAll('[data-depth]')];
+  let pointerX = 0;
+  let pointerY = 0;
+  let frame = 0;
+  const clamp = value => Math.max(-1.4, Math.min(1.4, value));
+  const paintLayers = () => {
+    for (const layer of layers) {
+      const depth = Number(layer.dataset.depth);
+      layer.style.setProperty('--move-x', `${(pointerX * depth * .4).toFixed(2)}px`);
+      layer.style.setProperty('--move-y', `${(pointerY * depth * .4).toFixed(2)}px`);
+    }
+    frame = 0;
+  };
+  const schedulePaint = () => { if (!frame) frame = requestAnimationFrame(paintLayers); };
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    window.addEventListener('pointermove', event => {
+      const bounds = churchScene.getBoundingClientRect();
+      if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
+      pointerX = clamp((event.clientX - window.innerWidth / 2) / (window.innerWidth / 2));
+      pointerY = clamp((event.clientY - window.innerHeight / 2) / (window.innerHeight / 2));
+      schedulePaint();
+    });
+    window.addEventListener('pointerleave', () => {
+      pointerX = 0;
+      pointerY = 0;
+      schedulePaint();
+    });
+  } else if (window.isSecureContext && 'DeviceOrientationEvent' in window) {
+    const motionToggle = document.querySelector('.motion-toggle');
+    let neutralGamma;
+    let neutralBeta;
+    const onTilt = event => {
+      if (event.gamma == null || event.beta == null) return;
+      if (neutralGamma === undefined) {
+        neutralGamma = event.gamma;
+        neutralBeta = event.beta;
+      }
+      const bounds = churchScene.getBoundingClientRect();
+      if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
+      pointerX += (clamp((event.gamma - neutralGamma) / 22) - pointerX) * .18;
+      pointerY += (clamp((event.beta - neutralBeta) / 22) - pointerY) * .18;
+      schedulePaint();
+    };
+    const startTilt = () => {
+      window.addEventListener('deviceorientation', onTilt, { passive: true });
+      motionToggle.hidden = true;
+    };
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      motionToggle.hidden = false;
+      motionToggle.addEventListener('click', async () => {
+        try {
+          if (await DeviceOrientationEvent.requestPermission() === 'granted') startTilt();
+          else motionToggle.textContent = 'TILT UNAVAILABLE';
+        } catch { motionToggle.textContent = 'TILT UNAVAILABLE'; }
+      });
+    } else startTilt();
+  }
+}
+
+const lookupError = document.querySelector('#lookup-error');
+const results = document.querySelector('#tyre-results');
+const plateForm = document.querySelector('#plate-form');
+function showError(error) {
+  lookupError.textContent = error.message || 'Tyre lookup is unavailable.';
+  lookupError.hidden = false;
+}
+
+const trimChoice = document.querySelector('#trim-choice');
+const trimSelect = document.querySelector('#trim-select');
+const fitmentList = document.querySelector('#fitment-list');
+let currentVehicle = null;
+
+function renderSizes(sizes, message) {
+  fitmentList.replaceChildren(...sizes.map(size => {
+    const card = document.createElement('article');
+    card.className = 'fitment-card';
+    const label = document.createElement('span');
+    label.className = 'fitment-label';
+    label.textContent = 'POSSIBLE TYRE SIZE';
+    const heading = document.createElement('h4');
+    heading.textContent = size;
+    card.append(label, heading);
+    return card;
+  }));
+  document.querySelector('#results-note').textContent = message || (sizes.length ? 'These are possible manufacturer tyre sizes. Check the size printed on your tyre sidewall before ordering. Call us for prices and stock.' : 'We could not confirm a tyre size for this vehicle. Please call us for help.');
+}
+
+function showVehicle(vehicle) {
+  currentVehicle = vehicle;
+  document.querySelector('#result-vehicle').textContent = vehicle.registration;
+  document.querySelector('#vehicle-name').textContent = [vehicle.make, vehicle.model].filter(Boolean).join(' ') || vehicle.registration;
+  document.querySelector('#vehicle-year').textContent = vehicle.year || 'NOT AVAILABLE';
+  document.querySelector('#vehicle-make').textContent = vehicle.make || 'NOT AVAILABLE';
+  document.querySelector('#vehicle-third-label').textContent = 'VERSION';
+  document.querySelector('#vehicle-trim').textContent = vehicle.selectedTrim || vehicle.version || 'CHOOSE BELOW';
+  const hasSizes = Boolean(vehicle.fitments?.length);
+  document.querySelector('#result-mode').textContent = hasSizes ? 'POSSIBLE SIZES FOR' : 'LOOKUP FOR';
+  document.querySelector('#results-title').textContent = hasSizes ? 'POSSIBLE TYRE SIZES' : 'WE FOUND YOUR CAR';
+  document.querySelector('#results-badge').textContent = vehicle.fitmentSource || (hasSizes ? 'MANUFACTURER FITMENT' : 'SIZE NOT CONFIRMED');
+  trimSelect.replaceChildren(new Option('Select your vehicle version', ''), ...(vehicle.trims || []).map(trim => new Option(trim, trim)));
+  trimChoice.hidden = Boolean(vehicle.selectedTrim) || !(vehicle.trims || []).length;
+  renderSizes(vehicle.fitments || [], vehicle.fitmentMessage);
+  results.hidden = false;
+  results.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+}
+
+plateForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  lookupError.hidden = true;
+  results.hidden = true;
+  const registration = plateForm.elements.registration.value.replace(/\s/g, '').toUpperCase();
+  if (!/^[A-Z0-9]{2,8}$/.test(registration)) return showError(new Error('Enter a valid UK registration.'));
+  const button = plateForm.querySelector('[type=submit]');
+  button.disabled = true;
+  button.textContent = 'LOOKING UP?';
+  try {
+    if (location.protocol === 'file:') throw new Error('Registration lookup needs the local server. Open start-site.cmd, then use the browser tab it launches.');
+    const response = await fetch(`${lookupApi}/api/vehicle`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ registration }) });
+    const vehicle = await response.json().catch(() => { throw new Error('Registration lookup is temporarily unavailable. Please call the shop.'); });
+    if (!response.ok) throw new Error(vehicle.error || vehicle.detail || 'Registration lookup is unavailable.');
+    showVehicle(vehicle);
+  } catch (error) {
+    showError(error instanceof TypeError ? new Error('Could not reach the registration lookup service. Please try again or call the shop.') : error);
+  } finally { button.disabled = false; button.textContent = 'FIND MY CAR'; }
+});
+
+trimSelect.addEventListener('change', () => { document.querySelector('#trim-submit').disabled = !trimSelect.value; });
+document.querySelector('#trim-submit').addEventListener('click', async () => {
+  if (!currentVehicle || !trimSelect.value) return;
+  const button = document.querySelector('#trim-submit');
+  button.disabled = true;
+  button.textContent = 'CHECKING?';
+  try {
+    const { year, make, model } = currentVehicle;
+    const response = await fetch('/api/fitment', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ year, make, model, trim: trimSelect.value }) });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Tyre sizes are unavailable.');
+    currentVehicle.selectedTrim = data.selectedTrim;
+    document.querySelector('#vehicle-trim').textContent = data.selectedTrim;
+    document.querySelector('#results-title').textContent = data.fitments?.length ? 'YOUR TYRE SIZES' : 'WE FOUND YOUR CAR';
+    document.querySelector('#results-badge').textContent = data.fitments?.length ? 'MANUFACTURER FITMENT' : 'SIZE NOT CONFIRMED';
+    renderSizes(data.fitments || []);
+  } catch (error) { renderSizes([], error.message); }
+  finally { button.disabled = false; button.textContent = 'SHOW TYRE SIZES'; }
+});
+
+</script>
+  </body>
+</html>

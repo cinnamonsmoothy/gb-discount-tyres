@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env.local
+.gcloud/
+__pycache__/
+*.pyc
+.env
+.env.*
+.gh/
