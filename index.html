@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body>
+    <svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden">
+      <filter id="logo-transparent-black" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  .2126 .7152 .0722 0 0" />
+        <feComponentTransfer><feFuncA type="linear" slope="3" /></feComponentTransfer>
+      </filter>
+    </svg>
     <div id="app">
       <header class="site-header">
         <a class="brand" href="#top" aria-label="GB Discount Tyres, back to top">
@@ -331,7 +337,7 @@ if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: re
 }
 
 const churchScene = document.querySelector('.church-scene');
-if (churchScene && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+if (churchScene && matchMedia('(min-width: 761px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
   const layers = [...churchScene.parentElement.querySelectorAll('[data-depth]')];
   let pointerX = 0;
   let pointerY = 0;
@@ -346,49 +352,18 @@ if (churchScene && matchMedia('(prefers-reduced-motion: no-preference)').matches
     frame = 0;
   };
   const schedulePaint = () => { if (!frame) frame = requestAnimationFrame(paintLayers); };
-  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    window.addEventListener('pointermove', event => {
+  window.addEventListener('pointermove', event => {
       const bounds = churchScene.getBoundingClientRect();
       if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
       pointerX = clamp((event.clientX - window.innerWidth / 2) / (window.innerWidth / 2));
       pointerY = clamp((event.clientY - window.innerHeight / 2) / (window.innerHeight / 2));
       schedulePaint();
-    });
-    window.addEventListener('pointerleave', () => {
+  });
+  window.addEventListener('pointerleave', () => {
       pointerX = 0;
       pointerY = 0;
       schedulePaint();
-    });
-  } else if (window.isSecureContext && 'DeviceOrientationEvent' in window) {
-    const motionToggle = document.querySelector('.motion-toggle');
-    let neutralGamma;
-    let neutralBeta;
-    const onTilt = event => {
-      if (event.gamma == null || event.beta == null) return;
-      if (neutralGamma === undefined) {
-        neutralGamma = event.gamma;
-        neutralBeta = event.beta;
-      }
-      const bounds = churchScene.getBoundingClientRect();
-      if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
-      pointerX += (clamp((event.gamma - neutralGamma) / 22) - pointerX) * .18;
-      pointerY += (clamp((event.beta - neutralBeta) / 22) - pointerY) * .18;
-      schedulePaint();
-    };
-    const startTilt = () => {
-      window.addEventListener('deviceorientation', onTilt, { passive: true });
-      motionToggle.hidden = true;
-    };
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-      motionToggle.hidden = false;
-      motionToggle.addEventListener('click', async () => {
-        try {
-          if (await DeviceOrientationEvent.requestPermission() === 'granted') startTilt();
-          else motionToggle.textContent = 'TILT UNAVAILABLE';
-        } catch { motionToggle.textContent = 'TILT UNAVAILABLE'; }
-      });
-    } else startTilt();
-  }
+  });
 }
 
 const lookupError = document.querySelector('#lookup-error');
