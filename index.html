@@ -25,10 +25,16 @@
           <img class="brand-logo" src="./assets/brand/logo.png" alt="" width="2172" height="724" />
         </a>
         <nav class="site-nav" aria-label="Main navigation">
-          <a href="#faq">FAQs</a>
-          <a href="#services">Services</a>
+          <div class="nav-links">
+            <a href="#faq">FAQs</a>
+            <a href="#services">Services</a>
+          </div>
           <a class="nav-contact" href="tel:02088442156" aria-label="Call 020 8844 2156"><span class="nav-contact-long">Call 020 8844 2156</span><span class="nav-contact-short">Call</span></a>
         </nav>
+        <a class="header-pressure" href="#find-us" tabindex="-1" aria-hidden="true">
+          <svg viewBox="0 0 48 40" fill="none" aria-hidden="true"><path d="M13 5C7 11 4 18 5 27l3 7h32l3-7c1-9-2-16-8-22M8 34v4m6-4v4m7-4v4m6-4v4m7-4v4m6-4v4" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 11v12" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="24" cy="29" r="2" fill="currentColor"/></svg>
+          <span><strong>FREE</strong> TYRE<br class="pressure-mobile-break" /> PRESSURE CHECK</span>
+        </a>
         <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
       </header>
       <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
@@ -46,6 +52,7 @@
 
       <main>
         <section class="hero" id="top" aria-labelledby="hero-title">
+          <div class="hero-stage">
           <div class="hero-media" aria-hidden="true">
             <img class="hero-poster" src="./assets/video/hero-poster.jpg" alt="" />
             <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="./assets/video/hero-poster.jpg">
@@ -63,7 +70,24 @@
               <a class="text-link" href="#services">Services</a>
             </div>
           </div>
-
+          </div>
+          <aside class="hero-offer" aria-label="Tyre offers">
+            <div class="offer-marquee">
+              <p class="offer-readable">BUY 2 TYRES, GET 2 HALF PRICE</p>
+              <div class="offer-marquee-track" aria-hidden="true">
+                <div class="offer-marquee-group">
+                  <span>BUY 2 TYRES, <strong>GET 2 HALF PRICE</strong><i>&bull;</i></span>
+                  <span>BUY 2 TYRES, <strong>GET 2 HALF PRICE</strong><i>&bull;</i></span>
+                  <span>BUY 2 TYRES, <strong>GET 2 HALF PRICE</strong><i>&bull;</i></span>
+                </div>
+                <div class="offer-marquee-group">
+                  <span>BUY 2 TYRES, <strong>GET 2 HALF PRICE</strong><i>&bull;</i></span>
+                  <span>BUY 2 TYRES, <strong>GET 2 HALF PRICE</strong><i>&bull;</i></span>
+                  <span>BUY 2 TYRES, <strong>GET 2 HALF PRICE</strong><i>&bull;</i></span>
+                </div>
+              </div>
+            </div>
+          </aside>
         </section>
 
         <section class="reg-finder" id="tyre-finder" aria-labelledby="reg-title">
@@ -282,16 +306,66 @@ setInterval(() => {
 const heroPlay = heroVideo.play();
 if (heroPlay) heroPlay.catch(showHeroGif);
 const siteHeader = document.querySelector('.site-header');
-function syncHeaderBackground() {
-  siteHeader.classList.toggle('is-scrolled', window.scrollY > 0);
+const headerPressure = document.querySelector('.header-pressure');
+const navLinks = document.querySelector('.nav-links');
+const mobileHeaderMedia = matchMedia('(max-width: 760px)');
+const heroSection = document.querySelector('.hero');
+const normalHeaderParts = [...siteHeader.querySelectorAll('.brand, .site-nav, .menu-toggle')];
+let headerScrollAnchor = Math.max(0, window.scrollY);
+let headerScrollDirection = 0;
+let previousHeaderScroll = headerScrollAnchor;
+function setPressureHeader(show) {
+  const focusedElement = document.activeElement;
+  siteHeader.classList.toggle('shows-pressure', show);
+  headerPressure.inert = !show;
+  headerPressure.setAttribute('aria-hidden', String(!show));
+  headerPressure.tabIndex = show ? 0 : -1;
+  navLinks.inert = show;
+  navLinks.setAttribute('aria-hidden', String(show));
+  for (const part of normalHeaderParts) {
+    part.inert = (show && mobileHeaderMedia.matches) ||
+      (document.body.classList.contains('menu-open') && !part.matches('.menu-toggle'));
+  }
+  if (show && (navLinks.contains(focusedElement) ||
+      (mobileHeaderMedia.matches && normalHeaderParts.some(part => part.contains(focusedElement))))) {
+    headerPressure.focus({ preventScroll: true });
+  } else if (!show && focusedElement === headerPressure) {
+    normalHeaderParts[0].focus({ preventScroll: true });
+  }
 }
+function syncHeaderBackground() {
+  const scroll = Math.max(0, window.scrollY);
+  const direction = Math.sign(scroll - previousHeaderScroll);
+  siteHeader.classList.toggle('is-scrolled', scroll > 0);
+  if (direction && direction !== headerScrollDirection) {
+    headerScrollAnchor = previousHeaderScroll;
+    headerScrollDirection = direction;
+  }
+  const withinMobileHero = mobileHeaderMedia.matches && heroSection.getBoundingClientRect().bottom > 0;
+  if (scroll < 80 || withinMobileHero || document.body.classList.contains('menu-open')) {
+    setPressureHeader(false);
+    headerScrollAnchor = scroll;
+  } else if (Math.abs(scroll - headerScrollAnchor) >= 24) {
+    setPressureHeader(direction > 0);
+    headerScrollAnchor = scroll;
+  }
+  previousHeaderScroll = scroll;
+}
+setPressureHeader(false);
 syncHeaderBackground();
 window.addEventListener('scroll', syncHeaderBackground, { passive: true });
+window.addEventListener('resize', syncHeaderBackground);
+mobileHeaderMedia.addEventListener('change', () => {
+  setPressureHeader(false);
+  headerScrollAnchor = previousHeaderScroll = Math.max(0, window.scrollY);
+  headerScrollDirection = 0;
+});
 const headline = document.querySelector('#hero-title');
 document.querySelector('#footer-year').textContent = new Date().getFullYear();
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('#mobile-menu');
 function setMenuOpen(open) {
+  setPressureHeader(false);
   mobileMenu.hidden = !open;
   document.body.classList.toggle('menu-open', open);
   document.querySelector('main').inert = open;

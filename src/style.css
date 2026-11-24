@@ -37,6 +37,14 @@ section[id] { scroll-margin-top: 6.25rem; }
 .brand { align-items: center; display: inline-flex; height: 3.75rem; overflow: hidden; }
 .brand-logo { display: block; height: auto; width: clamp(15.625rem, 23vw, 21.25rem); }
 .site-nav { align-items: center; display: flex; gap: clamp(1.5rem, 3vw, 3.375rem); }
+.nav-links { align-items: center; display: flex; gap: inherit; transition: opacity .2s ease, visibility .2s ease; }
+.header-pressure { align-items: center; display: flex; gap: .875rem; left: 50%; opacity: 0; pointer-events: none; position: absolute; transform: translate(-50%, .375rem); transition: opacity .2s ease, transform .2s ease, visibility .2s ease; visibility: hidden; }
+.header-pressure svg { color: #f5c842; flex: 0 0 auto; height: 2.25rem; width: 2.7rem; }
+.header-pressure span { font: 700 clamp(12px, 1.5rem, 22px)/1.1 "Barlow Condensed", Impact, sans-serif; letter-spacing: .04em; white-space: nowrap; }
+.header-pressure strong { color: #f5c842; }
+.pressure-mobile-break { display: none; }
+.shows-pressure .header-pressure { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); visibility: visible; }
+.shows-pressure .nav-links { opacity: 0; pointer-events: none; visibility: hidden; }
 .site-nav a { color: #d2d2d1; font-size: 0.75rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; transition: color .2s; }
 .site-nav a:hover, .site-nav a:focus-visible { color: #fff; }
 .site-nav .nav-contact { border-bottom: 1px solid var(--brand-red); color: #fff; padding: 0.5rem 0; }
@@ -47,10 +55,19 @@ section[id] { scroll-margin-top: 6.25rem; }
 .hero {
   background: #000;
   isolation: isolate;
-  min-height: 100svh;
   overflow: hidden;
   position: relative;
 }
+.hero-stage { min-height: 100svh; overflow: hidden; position: relative; }
+.hero-offer { background: var(--brand-red); border-top: 1px solid rgba(255,255,255,.15); position: relative; z-index: 4; }
+.offer-marquee { overflow: hidden; padding-block: .75rem; }
+.offer-readable { clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+.offer-marquee-track { animation: offer-marquee 35s linear infinite; display: flex; width: max-content; }
+.offer-marquee-group { align-items: center; display: flex; flex-shrink: 0; justify-content: space-around; min-width: 100vw; }
+.offer-marquee-group span { align-items: center; display: inline-flex; flex-shrink: 0; font: 800 clamp(1.5rem, 2.4vw, 3rem)/1.1 "Barlow Condensed", Impact, sans-serif; gap: .25em; letter-spacing: -.015em; white-space: nowrap; }
+.offer-marquee-group strong { font-weight: inherit; }
+.offer-marquee-group i { color: #171819; font-size: .65em; font-style: normal; margin-inline: 2rem; }
+@keyframes offer-marquee { to { transform: translateX(-50%); } }
 .hero-media, .hero-shade { inset: 0; position: absolute; }
 .hero-media { left: 25%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 25%); mask-image: linear-gradient(90deg, transparent, #000 25%); z-index: 0; }
 .hero-poster, .hero-video, .hero-gif, .hero-gif-nojs { height: 100%; inset: 0; object-fit: cover; object-position: left center; position: absolute; width: 100%; }
@@ -303,6 +320,15 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
   .brand-logo { width: 11.25rem; }
   .site-header:not(.is-scrolled) .brand-logo { filter: url(#logo-transparent-black) drop-shadow(0 0.1875rem 0.3125rem rgba(0, 0, 0, .85)) drop-shadow(0 0 0.625rem rgba(0, 0, 0, .5)); }
   .site-nav { gap: 0; margin-left: auto; }
+  .nav-links { display: none; }
+  .header-pressure { gap: .625rem; inset: 0; justify-content: center; padding: .75rem 1rem; transform: translateY(.375rem); }
+  .header-pressure svg { height: 2rem; width: 2.4rem; }
+  .header-pressure span { font-size: clamp(1.125rem, 4.8vw, 1.75rem); letter-spacing: .02em; line-height: 1.1; white-space: nowrap; }
+  .shows-pressure .header-pressure { transform: translateY(0); }
+  .site-header .brand, .site-header .site-nav, .site-header .menu-toggle { transition: opacity .2s ease, visibility .2s ease; }
+  .shows-pressure .brand, .shows-pressure .site-nav, .shows-pressure .menu-toggle { opacity: 0; pointer-events: none; visibility: hidden; }
+  .offer-marquee-group span { font-size: 1.5rem; }
+  .offer-marquee-group i { margin-inline: 1.5rem; }
   .site-nav a:not(.nav-contact) { display: none; }
   .site-nav .nav-contact { background: var(--brand-red); border: 0; color: #fff; font-size: 0.75rem; padding: 0.625rem 0.875rem; }
   .nav-contact-long { display: none; }
@@ -395,7 +421,7 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
   .services { padding-left: 1.125rem; padding-right: 1.125rem; }
   .services-heading h2 { font-size: clamp(3.25rem, 13vw, 4.25rem); }
   .brand-logo { width: 10.125rem; }
-  .hero { min-height: max(46.25rem, 100svh); }
+  .hero-stage { min-height: max(46.25rem, 100svh); }
   .hero-media { transform: scale(1.35); }
   .hero-content { top: 50%; }
   .hero-description { max-width: 100%; }
@@ -414,6 +440,8 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
   .footer-bottom { align-items: flex-start; flex-direction: column; gap: 0.9375rem; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .offer-marquee-track { display: none; }
+  .offer-readable { clip-path: none; font: 800 clamp(1.5rem, 2.4vw, 3rem)/1.1 "Barlow Condensed", Impact, sans-serif; height: auto; margin: 0 auto; max-width: 120rem; padding-inline: 1.5rem; position: static; white-space: normal; width: auto; }
   html.reveal-ready .scroll-reveal > .reveal-content { opacity: 1; transform: none; transition: none; }
   .church-layer { transition: none; }
   .church-layer img { animation: none; }
