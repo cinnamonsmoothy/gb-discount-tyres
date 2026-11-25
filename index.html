@@ -217,13 +217,11 @@
         <section class="reviews" id="reviews" aria-labelledby="reviews-title">
           <div class="reviews-inner">
             <div class="reviews-heading">
-              <div>
-                <p class="reviews-eyebrow">FROM OUR CUSTOMERS</p>
-                <h2 id="reviews-title">WHY DRIVERS IN<br />FELTHAM <em>TRUST US.</em></h2>
-              </div>
-              <p class="reviews-intro">Friendly faces. Honest advice. A job well done.<br />Hear it from the drivers who’ve been here.</p>
+              <h2 id="reviews-title">WHY DRIVERS IN<br />FELTHAM <em>TRUST US.</em></h2>
             </div>
-            <div class="reviews-grid">
+            <div class="reviews-marquee" tabindex="0" role="region" aria-label="Customer reviews. Focus or hover to pause scrolling.">
+              <div class="reviews-track">
+                <div class="reviews-group">
               <figure class="review-card">
                 <div class="review-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
                 <blockquote><p>Fantastic service from start to finish! The team at GB Discount Tyres Ltd were quick, professional and very helpful. Great prices and honest advice. Highly recommend them to anyone looking for quality tyres and reliable service. Thank you!</p></blockquote>
@@ -254,6 +252,38 @@
                 <blockquote><p>Great prices and quick service. There is also a clean waiting area to relax in.</p></blockquote>
                 <figcaption><span class="review-avatar" aria-hidden="true">S</span><span>Safi<span class="review-source">Customer review</span></span></figcaption>
               </figure>
+              <figure class="review-card">
+                <div class="review-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote><p>Fantastic prices and offers on tyres, and great service. I recommend them.</p></blockquote>
+                <figcaption><span class="review-avatar" aria-hidden="true">BD</span><span>Bless Damba<span class="review-source">Customer review</span></span></figcaption>
+              </figure>
+              <figure class="review-card">
+                <div class="review-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote><p>Quick service and nice staff. Four tyres — in and out!</p></blockquote>
+                <figcaption><span class="review-avatar" aria-hidden="true">UA</span><span>Umeed Ali<span class="review-source">Customer review</span></span></figcaption>
+              </figure>
+              <figure class="review-card">
+                <div class="review-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote><p>Very satisfied. Excellent customer service. The guy there was very helpful and explained everything to me. Very reasonable prices.</p></blockquote>
+                <figcaption><span class="review-avatar" aria-hidden="true">TS</span><span>Tanveer Singh Saini<span class="review-source">Customer review</span></span></figcaption>
+              </figure>
+              <figure class="review-card">
+                <div class="review-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote><p>Amazing service! Will definitely recommend! Tyres and wheel alignment services.</p></blockquote>
+                <figcaption><span class="review-avatar" aria-hidden="true">JS</span><span>Javind Soni<span class="review-source">Customer review</span></span></figcaption>
+              </figure>
+              <figure class="review-card">
+                <div class="review-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote><p>Changed all my tyres for a very good price. Top customer service. Would recommend to everyone.</p></blockquote>
+                <figcaption><span class="review-avatar" aria-hidden="true">IH</span><span>Ibrahim Hadramiii<span class="review-source">Customer review</span></span></figcaption>
+              </figure>
+              <figure class="review-card">
+                <div class="review-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote><p>Good service at a good price.</p></blockquote>
+                <figcaption><span class="review-avatar" aria-hidden="true">ZK</span><span>Zeeshan Khan<span class="review-source">Customer review</span></span></figcaption>
+              </figure>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -335,6 +365,18 @@
     </div>
     <script>
 const lookupApi = 'https://gb-discount-tyres-quxl24etta-nw.a.run.app';
+const reviewsTrack = document.querySelector('.reviews-track');
+const reviewsGroup = reviewsTrack.firstElementChild;
+const reviewsDuplicate = reviewsGroup.cloneNode(true);
+reviewsDuplicate.setAttribute('aria-hidden', 'true');
+reviewsDuplicate.inert = true;
+reviewsTrack.append(reviewsDuplicate);
+function sizeReviewMarquee() {
+  reviewsTrack.style.setProperty('--reviews-duration', `${reviewsGroup.getBoundingClientRect().width / 35}s`);
+}
+sizeReviewMarquee();
+window.addEventListener('resize', sizeReviewMarquee);
+if (document.fonts) document.fonts.ready.then(sizeReviewMarquee);
 const marquees = [...document.querySelectorAll('.offer-marquee-track')].map(track => ({
   track,
   offers: [...track.firstElementChild.children].map(offer => offer.cloneNode(true))
