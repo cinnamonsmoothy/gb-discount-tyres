@@ -62,7 +62,7 @@ section[id] { scroll-margin-top: 6.25rem; }
 .hero-offer { background: var(--brand-red); border-top: 1px solid rgba(255,255,255,.15); position: relative; z-index: 4; }
 .offer-marquee { overflow: hidden; padding-block: .75rem; }
 .offer-readable { clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
-.offer-marquee-track { animation: offer-marquee 35s linear infinite; display: flex; width: max-content; }
+.offer-marquee-track { animation: offer-marquee var(--marquee-duration, 35s) linear infinite; display: flex; width: max-content; }
 .offer-marquee-group { align-items: center; display: flex; flex-shrink: 0; }
 .offer-marquee-group span { align-items: center; display: inline-flex; flex-shrink: 0; font: 800 clamp(1.5rem, 2.4vw, 3rem)/1.1 "Barlow Condensed", Impact, sans-serif; letter-spacing: -.015em; white-space: nowrap; }
 .offer-marquee-group strong { font-weight: inherit; }

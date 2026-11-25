@@ -291,6 +291,28 @@
     </div>
     <script>
 const lookupApi = 'https://gb-discount-tyres-quxl24etta-nw.a.run.app';
+const marquees = [...document.querySelectorAll('.offer-marquee-track')].map(track => ({
+  track,
+  offers: [...track.firstElementChild.children].map(offer => offer.cloneNode(true))
+}));
+function sizeMarquees() {
+  for (const { track, offers } of marquees) {
+    const [first, second] = track.children;
+    first.replaceChildren(...offers.map(offer => offer.cloneNode(true)));
+    const pairWidth = first.getBoundingClientRect().width;
+    if (!pairWidth) continue;
+    // Each identical half must fill the banner, including at the loop boundary.
+    const repeats = Math.max(1, Math.ceil(track.parentElement.clientWidth / pairWidth));
+    for (let repeat = 1; repeat < repeats; repeat++) {
+      first.append(...offers.map(offer => offer.cloneNode(true)));
+    }
+    second.replaceChildren(...[...first.children].map(offer => offer.cloneNode(true)));
+    track.style.setProperty('--marquee-duration', `${first.getBoundingClientRect().width / 50}s`);
+  }
+}
+sizeMarquees();
+window.addEventListener('resize', sizeMarquees);
+if (document.fonts) document.fonts.ready.then(sizeMarquees);
 const heroMedia = document.querySelector('.hero-media');
 const heroVideo = document.querySelector('.hero-video');
 let videoStartTimer;
