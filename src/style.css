@@ -276,7 +276,7 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
 .location-map-bottom { color: #a7a9aa; }
 .location-map-bottom a { color: #f3f1ed; }
 .location-map-bottom a:hover, .location-map-bottom a:focus-visible { color: var(--brand-red); }
-.reviews { background: #101112; padding: clamp(5.5rem, 9vw, 9rem) 0; }
+.reviews { background: #f1efeb; color: #171819; padding: clamp(5.5rem, 9vw, 9rem) 0; }
 .reviews-inner { width: 100%; }
 .reviews-heading { margin: 0 auto 3.5rem; max-width: 96.75rem; padding-inline: 1.5rem; }
 .reviews h2 { font-size: clamp(4rem, 6.5vw, 7rem); letter-spacing: -.035em; line-height: .9; }
@@ -286,14 +286,14 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
 .reviews-track { animation: offer-marquee var(--reviews-duration, 120s) linear infinite; display: flex; width: max-content; }
 .reviews-marquee:hover .reviews-track, .reviews-marquee:focus-within .reviews-track { animation-play-state: paused; }
 .reviews-group { display: flex; flex-shrink: 0; gap: 1.25rem; padding-right: 1.25rem; }
-.review-card { background: #191a1c; border: 1px solid #303133; border-top: 2px solid var(--brand-red); display: flex; flex: 0 0 auto; flex-direction: column; margin: 0; padding: 2rem; width: clamp(24rem, 29vw, 34rem); }
-.review-stars { color: #f5c842; font-size: 1.125rem; letter-spacing: .15em; }
-.review-card blockquote { color: #dededb; font-size: 1rem; line-height: 1.75; margin: 1.5rem 0 2rem; }
+.review-card { background: #fff; border: 1px solid #d6d3cd; border-top: 2px solid var(--brand-red); display: flex; flex: 0 0 auto; flex-direction: column; margin: 0; padding: 2rem; width: clamp(24rem, 29vw, 34rem); }
+.review-stars { color: #946900; font-size: 1.125rem; letter-spacing: .15em; }
+.review-card blockquote { color: #444649; font-size: 1rem; line-height: 1.75; margin: 1.5rem 0 2rem; }
 .review-card blockquote p { margin: 0; }
 .review-card blockquote p + p { margin-top: 1rem; }
 .review-card figcaption { align-items: center; display: flex; font-size: .875rem; font-weight: 700; gap: .875rem; margin-top: auto; }
-.review-avatar { align-items: center; background: #302022; border: 1px solid #593035; border-radius: 50%; color: #f0c4c5; display: inline-flex; flex: 0 0 2.75rem; font-size: .75rem; height: 2.75rem; justify-content: center; }
-.review-source { color: #96979a; display: block; font-size: .6875rem; font-weight: 400; margin-top: .3125rem; }
+.review-avatar { align-items: center; background: #f9eaeb; border: 1px solid #e9c5c7; border-radius: 50%; color: #9d161b; display: inline-flex; flex: 0 0 2.75rem; font-size: .75rem; height: 2.75rem; justify-content: center; }
+.review-source { color: #686a6d; display: block; font-size: .6875rem; font-weight: 400; margin-top: .3125rem; }
 @media (max-width: 760px) {
   .reviews { padding: 5rem 0; }
   .reviews-heading { margin-bottom: 2.5rem; padding-inline: 1.125rem; }
@@ -304,6 +304,17 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
   .reviews-marquee { overflow-x: auto; }
   .reviews-track { animation: none; }
   .reviews-group[aria-hidden="true"] { display: none; }
+}
+.pressure-feature { background: #000; color: #f5f4f1; padding: clamp(6rem, 10vw, 10rem) 1.5rem; }
+.pressure-feature-inner { align-items: center; display: flex; gap: clamp(3rem, 5vw, 6rem); justify-content: center; margin: 0 auto; max-width: 93.75rem; }
+.pressure-feature-icon { color: #f5c842; flex: 0 0 auto; overflow: visible; width: clamp(12rem, 16vw, 20rem); }
+.pressure-feature h2 { font-size: clamp(4rem, 6vw, 8rem); letter-spacing: -.025em; line-height: .95; }
+.pressure-feature h2 strong { color: #f5c842; font-weight: 900; }
+@media (max-width: 760px) {
+  .pressure-feature { padding: 5rem 1.125rem; }
+  .pressure-feature-inner { flex-direction: column; gap: 2.5rem; text-align: center; }
+  .pressure-feature-icon { width: 9rem; }
+  .pressure-feature h2 { font-size: clamp(2.5rem, 10vw, 4rem); }
 }
 .faq { background: #eceae6; color: #171819; padding: clamp(5.9375rem, 11vw, 11.25rem) 1.5rem; }
 .faq-inner { align-items: start; display: grid; gap: clamp(3.4375rem, 8vw, 8.75rem); grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); margin: 0 auto; max-width: 93.75rem; }
