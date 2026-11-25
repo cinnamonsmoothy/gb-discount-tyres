@@ -63,8 +63,8 @@ section[id] { scroll-margin-top: 6.25rem; }
 .offer-marquee { overflow: hidden; padding-block: .75rem; }
 .offer-readable { clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
 .offer-marquee-track { animation: offer-marquee 35s linear infinite; display: flex; width: max-content; }
-.offer-marquee-group { align-items: center; display: flex; flex-shrink: 0; justify-content: space-around; min-width: 100vw; }
-.offer-marquee-group span { align-items: center; display: inline-flex; flex-shrink: 0; font: 800 clamp(1.5rem, 2.4vw, 3rem)/1.1 "Barlow Condensed", Impact, sans-serif; gap: .25em; letter-spacing: -.015em; white-space: nowrap; }
+.offer-marquee-group { align-items: center; display: flex; flex-shrink: 0; }
+.offer-marquee-group span { align-items: center; display: inline-flex; flex-shrink: 0; font: 800 clamp(1.5rem, 2.4vw, 3rem)/1.1 "Barlow Condensed", Impact, sans-serif; letter-spacing: -.015em; white-space: nowrap; }
 .offer-marquee-group strong { font-weight: inherit; }
 .offer-marquee-group i { color: #171819; font-size: .65em; font-style: normal; margin-inline: 2rem; }
 @keyframes offer-marquee { to { transform: translateX(-50%); } }

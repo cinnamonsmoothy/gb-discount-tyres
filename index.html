@@ -73,17 +73,15 @@
           </div>
           <aside class="hero-offer" aria-label="Tyre offers">
             <div class="offer-marquee">
-              <p class="offer-readable">BUY 2 TYRES, GET 2 HALF PRICE</p>
+              <p class="offer-readable">OFFER ON ALL SEASONS AND WINTER TYRES • BUY 2 TYRES, GET 2 HALF PRICE</p>
               <div class="offer-marquee-track" aria-hidden="true">
                 <div class="offer-marquee-group">
-                  <span>BUY 2 TYRES, <strong>GET 2 HALF PRICE</strong><i>&bull;</i></span>
-                  <span>BUY 2 TYRES, <strong>GET 2 HALF PRICE</strong><i>&bull;</i></span>
-                  <span>BUY 2 TYRES, <strong>GET 2 HALF PRICE</strong><i>&bull;</i></span>
+                  <span>OFFER ON ALL SEASONS AND WINTER TYRES<i>&bull;</i></span>
+                  <span>BUY 2 TYRES, GET 2 HALF PRICE<i>&bull;</i></span>
                 </div>
                 <div class="offer-marquee-group">
-                  <span>BUY 2 TYRES, <strong>GET 2 HALF PRICE</strong><i>&bull;</i></span>
-                  <span>BUY 2 TYRES, <strong>GET 2 HALF PRICE</strong><i>&bull;</i></span>
-                  <span>BUY 2 TYRES, <strong>GET 2 HALF PRICE</strong><i>&bull;</i></span>
+                  <span>OFFER ON ALL SEASONS AND WINTER TYRES<i>&bull;</i></span>
+                  <span>BUY 2 TYRES, GET 2 HALF PRICE<i>&bull;</i></span>
                 </div>
               </div>
             </div>
@@ -309,7 +307,7 @@ const siteHeader = document.querySelector('.site-header');
 const headerPressure = document.querySelector('.header-pressure');
 const navLinks = document.querySelector('.nav-links');
 const mobileHeaderMedia = matchMedia('(max-width: 760px)');
-const heroSection = document.querySelector('.hero');
+const heroOffer = document.querySelector('.hero-offer');
 const normalHeaderParts = [...siteHeader.querySelectorAll('.brand, .site-nav, .menu-toggle')];
 let headerScrollAnchor = Math.max(0, window.scrollY);
 let headerScrollDirection = 0;
@@ -341,8 +339,11 @@ function syncHeaderBackground() {
     headerScrollAnchor = previousHeaderScroll;
     headerScrollDirection = direction;
   }
-  const withinMobileHero = mobileHeaderMedia.matches && heroSection.getBoundingClientRect().bottom > 0;
-  if (scroll < 80 || withinMobileHero || document.body.classList.contains('menu-open')) {
+  // On mobile, show the offer just before the banner enters the viewport.
+  const beforeMobileOffer = heroOffer.getBoundingClientRect().top > window.innerHeight + 80;
+  if (!mobileHeaderMedia.matches) {
+    setPressureHeader(scroll > 0);
+  } else if (scroll < 80 || beforeMobileOffer || document.body.classList.contains('menu-open')) {
     setPressureHeader(false);
     headerScrollAnchor = scroll;
   } else if (Math.abs(scroll - headerScrollAnchor) >= 24) {
