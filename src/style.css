@@ -291,8 +291,8 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
 .reviews-track { animation: offer-marquee var(--reviews-duration, 120s) linear infinite; display: flex; width: max-content; }
 .reviews-marquee:hover .reviews-track, .reviews-marquee:focus-within .reviews-track { animation-play-state: paused; }
 .reviews-group { display: flex; flex-shrink: 0; gap: 1.25rem; padding-right: 1.25rem; }
-.review-card { background: #fff; border: 1px solid #d6d3cd; border-top: 2px solid var(--brand-red); display: flex; flex: 0 0 auto; flex-direction: column; margin: 0; padding: 2rem; width: clamp(24rem, 29vw, 34rem); }
-.review-stars { color: #946900; font-size: 1.125rem; letter-spacing: .15em; }
+.review-card { background: #f5f4f0; border: 1px solid #d6d3cd; border-top: 2px solid var(--brand-red); display: flex; flex: 0 0 auto; flex-direction: column; margin: 0; padding: 2rem; width: clamp(24rem, 29vw, 34rem); }
+.review-stars { color: #ffcc00; font-size: 1.75rem; letter-spacing: .12em; }
 .review-card blockquote { color: #444649; font-size: 1rem; line-height: 1.75; margin: 1.5rem 0 2rem; }
 .review-card blockquote p { margin: 0; }
 .review-card blockquote p + p { margin-top: 1rem; }
