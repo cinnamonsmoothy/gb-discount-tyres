@@ -276,9 +276,9 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
 .location-map-bottom { color: #a7a9aa; }
 .location-map-bottom a { color: #f3f1ed; }
 .location-map-bottom a:hover, .location-map-bottom a:focus-visible { color: var(--brand-red); }
-.reviews { background: #101112; padding: clamp(5.5rem, 9vw, 9rem) 1.5rem; }
-.reviews-inner { margin: 0 auto; max-width: 93.75rem; }
-.reviews-heading { margin-bottom: 3.5rem; }
+.reviews { background: #101112; padding: clamp(5.5rem, 9vw, 9rem) 0; }
+.reviews-inner { width: 100%; }
+.reviews-heading { margin: 0 auto 3.5rem; max-width: 96.75rem; padding-inline: 1.5rem; }
 .reviews h2 { font-size: clamp(4rem, 6.5vw, 7rem); letter-spacing: -.035em; line-height: .9; }
 .reviews h2 em { color: var(--brand-red); font-style: normal; }
 .reviews-marquee { overflow: hidden; }
@@ -295,8 +295,8 @@ html.reveal-ready .scroll-reveal.is-visible > .reveal-content { opacity: 1; tran
 .review-avatar { align-items: center; background: #302022; border: 1px solid #593035; border-radius: 50%; color: #f0c4c5; display: inline-flex; flex: 0 0 2.75rem; font-size: .75rem; height: 2.75rem; justify-content: center; }
 .review-source { color: #96979a; display: block; font-size: .6875rem; font-weight: 400; margin-top: .3125rem; }
 @media (max-width: 760px) {
-  .reviews { padding: 5rem 1.125rem; }
-  .reviews-heading { margin-bottom: 2.5rem; }
+  .reviews { padding: 5rem 0; }
+  .reviews-heading { margin-bottom: 2.5rem; padding-inline: 1.125rem; }
   .reviews h2 { font-size: clamp(2.75rem, 10.5vw, 5rem); }
   .review-card { padding: 1.5rem; width: min(82vw, 24rem); }
 }
